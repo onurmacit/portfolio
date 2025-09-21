@@ -58,17 +58,16 @@ function ProjectVideo({ src }: ProjectVideoProps) {
           autoPlay
           loop
           muted
-          className="aspect-video w-full cursor-zoom-in rounded-xl"
+          className="aspect-[9/16] w-full max-w-[200px] mx-auto cursor-zoom-in rounded-xl"
         />
       </MorphingDialogTrigger>
       <MorphingDialogContainer>
-        <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
+        <MorphingDialogContent className="relative aspect-[9/16] rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
           <video
             src={src}
             autoPlay
             loop
-            muted
-            className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
+            className="aspect-[9/16] w-full max-w-[360px] max-h-[640px] rounded-xl mx-auto object-contain sm:w-[360px] sm:h-[640px]"
           />
         </MorphingDialogContent>
         <MorphingDialogClose
@@ -137,8 +136,12 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            Focused on creating intuitive and performant web experiences.
-            Bridging the gap between design and development.
+          I started programming with algorithm
+            development and Java. Then I met C#. I have
+            developed freelance projects in web development,
+            game development, and desktop application
+            development. I am currently building backend
+            solutions for my own projects.
           </p>
         </div>
       </motion.section>
@@ -147,8 +150,8 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <h3 className="mb-5 text-lg font-medium">Projects</h3>
+        <div className="grid grid-cols-1 gap-6 max-w-xs mx-auto sm:max-w-4xl sm:grid-cols-2 lg:grid-cols-3">
           {PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
               <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
