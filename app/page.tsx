@@ -134,14 +134,17 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
+        <h3 className="mb-5 text-lg font-medium">About Me</h3>
         <div className="flex-1">
+          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          I began my programming journey with algorithm development and Java, then expanded into C# development.
+          </p>
+          <p className="text-zinc-600 dark:text-zinc-400 mb-4">
+          Through freelance work, I've built expertise across web development, game development, and desktop applications.
+          </p>
           <p className="text-zinc-600 dark:text-zinc-400">
-          I started programming with algorithm
-            development and Java. Then I met C#. I have
-            developed freelance projects in web development,
-            game development, and desktop application
-            development. I am currently building backend
-            solutions for my own projects.
+          Currently, I focus on architecting robust backend solutions for my own projects, combining technical depth 
+          with practical problem-solving skills.
           </p>
         </div>
       </motion.section>
