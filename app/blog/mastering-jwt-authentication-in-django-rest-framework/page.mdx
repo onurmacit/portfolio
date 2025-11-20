@@ -8,31 +8,327 @@ export const metadata = {
 };
 
 <Cover
-  src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*qwkaQxhREF7qg_clkX6biw.jpeg"
+  src="/jwt1.jpg"
   alt="JWT Authentication in Django Rest Framework"
   caption="JWT Authentication Guide"
 />
 
 # Mastering JWT Authentication in Django Rest Framework: Best Practices and Techniques
 
-Learn how to implement secure JWT authentication in Django Rest Framework with best practices, tips, and real-world techniques.
+Authentication is the cornerstone of any secure web application, and JSON Web Tokens (JWT) have become a popular choice for modern applications due to their stateless nature, scalability, and flexibility. In this article, we'll explore how to implement JWT authentication in Django Rest Framework (DRF) while focusing on best practices, performance optimization, and advanced techniques. Whether you're building a small application or a large-scale distributed system, this guide will help you implement JWT authentication effectively and securely.
 
 ---
 
-## Coming Soon
+## Why JWT Authentication?
 
-This article is currently being written. Please check back later for comprehensive content about JWT authentication in Django Rest Framework.
+JWT authentication has gained widespread adoption because it offers several advantages over traditional session-based authentication:
+
+- **Statelessness**: JWTs are self-contained tokens that include all the necessary information about the user. This eliminates the need for server-side storage, making JWTs ideal for distributed systems and microservices architectures.
+- **Scalability**: Since JWTs are stateless, they reduce the load on your database and allow your application to scale horizontally.
+- **Security**: JWTs can be signed and encrypted to ensure data integrity and confidentiality.
+- **Flexibility**: JWTs can be used across different domains and platforms, making them suitable for single-page applications (SPAs), mobile apps, and APIs.
+
+However, implementing JWT authentication correctly requires a deep understanding of security, performance, and best practices. Let's dive into the details.
+
+<img 
+  src="/jwt2.jpg" 
+  alt="JWT Authentication Security Concepts" 
+  className="w-full max-w-2xl mx-auto rounded-lg shadow-lg my-8"
+/>
+
+<img 
+  src="/jwt3.jpg" 
+  alt="JWT Performance and Best Practices" 
+  className="w-full max-w-2xl mx-auto rounded-lg shadow-lg my-8"
+/>
 
 ---
 
-### What You'll Learn
+## Setting Up JWT Authentication in DRF
 
-- JWT fundamentals and best practices
-- Django Rest Framework JWT implementation
-- Security considerations and token management
-- Real-world examples and techniques
-- Performance optimization strategies
+### 1. Install Required Packages
+
+To get started, you'll need to install the necessary packages:
+
+```bash
+pip install djangorestframework djangorestframework-simplejwt
+```
+
+- `djangorestframework`: The core DRF package.
+- `djangorestframework-simplejwt`: A popular library for JWT authentication in DRF.
+
+### 2. Configure JWT in settings.py
+
+Add the following configuration to your Django settings.py file:
+
+```python
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+    'rest_framework_simplejwt',
+    ...
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+# JWT Settings
+from datetime import timedelta
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'UPDATE_LAST_LOGIN': True,
+}
+```
+
+### 3. Add JWT Endpoints
+
+Include the JWT endpoints in your urls.py:
+
+```python
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
+urlpatterns = [
+    ...
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    ...
+]
+```
 
 ---
 
-*This article will be updated with detailed content soon.*
+## Adding Register and Login Endpoints
+
+To implement register and login endpoints, we need to create custom views and serializers.
+
+### 1. Create a Custom User Model (Optional)
+
+If you want to extend the default Django User model, you can create a custom user model:
+
+```python
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+
+class CustomUser(AbstractUser):
+    # Add custom fields if needed
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
+```
+
+Update settings.py to use the custom user model:
+
+```python
+AUTH_USER_MODEL = 'your_app_name.CustomUser'
+```
+
+### 2. Create Serializers for Register and Login
+
+Create a serializers.py file in your app directory:
+
+```python
+from rest_framework import serializers
+from django.contrib.auth import get_user_model
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+User = get_user_model()
+
+class UserRegisterSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            username=validated_data['username'],
+            email=validated_data['email'],
+            password=validated_data['password']
+        )
+        return user
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        token['username'] = user.username
+        return token
+```
+
+### 3. Create Views for Register and Login
+
+Create a views.py file in your app directory:
+
+```python
+from rest_framework import generics, permissions
+from rest_framework.response import Response
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import UserRegisterSerializer, CustomTokenObtainPairSerializer
+
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserRegisterSerializer
+    permission_classes = [permissions.AllowAny]
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
+```
+
+### 4. Add Register and Login Endpoints to urls.py
+
+Update your urls.py to include the new endpoints:
+
+```python
+from django.urls import path
+from .views import RegisterView, CustomTokenObtainPairView
+from rest_framework_simplejwt.views import TokenRefreshView
+
+urlpatterns = [
+    path('api/register/', RegisterView.as_view(), name='register'),
+    path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+]
+```
+
+---
+
+## Best Practices for JWT Authentication
+
+### 1. Use Short-Lived Access Tokens
+
+Access tokens should have a short lifespan (e.g., 15–30 minutes) to minimize the risk of token misuse. If a token is compromised, it will only be valid for a short period. This practice reduces the attack surface and enhances security.
+
+### 2. Implement Token Rotation
+
+Token rotation ensures that refresh tokens are invalidated after use and a new refresh token is issued. This enhances security by reducing the window of opportunity for attackers to use stolen tokens.
+
+Enable token rotation in settings.py:
+
+```python
+SIMPLE_JWT = {
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+}
+```
+
+### 3. Secure Token Storage
+
+JWTs should never be stored in local storage, as it is vulnerable to XSS (Cross-Site Scripting) attacks. Instead, store tokens in secure, HTTP-only cookies. This prevents client-side JavaScript from accessing the tokens and ensures they are only sent over HTTPS.
+
+### 4. Use HTTPS
+
+Always use HTTPS to encrypt data transmitted between the client and server. This prevents man-in-the-middle attacks and ensures the confidentiality and integrity of JWTs. Without HTTPS, tokens can be intercepted and misused.
+
+### 5. Blacklist Compromised Tokens
+
+Implement a token blacklist to revoke compromised tokens. This can be done using Django's cache or a dedicated database table. Blacklisting ensures that even if a token is stolen, it cannot be used once it's added to the blacklist.
+
+```python
+from rest_framework_simplejwt.tokens import OutstandingToken, BlacklistedToken
+
+def blacklist_token(token):
+    outstanding_token = OutstandingToken.objects.get(token=token)
+    BlacklistedToken.objects.create(token=outstanding_token)
+```
+
+### 6. Optimize Token Payload
+
+Keep the JWT payload small to reduce overhead. Only include essential information, such as the user ID and roles. Avoid storing sensitive data in the token, as JWTs are not encrypted by default (they are only signed). If you need to include sensitive data, consider encrypting the token.
+
+---
+
+## Advanced Techniques
+
+### 1. Custom Token Claims
+
+Add custom claims to the token payload to include additional user information. This can be done by subclassing TokenObtainPairSerializer:
+
+```python
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        token['custom_claim'] = 'custom_value'
+        return token
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
+```
+
+Custom claims can be useful for storing user roles, permissions, or other metadata that your application needs.
+
+### 2. Rate Limiting for Token Endpoints
+
+Protect your token endpoints from brute-force attacks by implementing rate limiting. Use Django's django-ratelimit library or DRF's built-in throttling:
+
+```python
+from rest_framework.throttling import AnonRateThrottle
+
+class TokenObtainPairThrottle(AnonRateThrottle):
+    rate = '5/minute'
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    throttle_classes = [TokenObtainPairThrottle]
+```
+
+Rate limiting ensures that attackers cannot make unlimited requests to your token endpoints, reducing the risk of brute-force attacks.
+
+### 3. Token Expiry Notifications
+
+Notify users when their token is about to expire. This can be done by adding an expires_in field to the token response:
+
+```python
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.response import Response
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        response.data['expires_in'] = SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'].total_seconds()
+        return response
+```
+
+This feature improves the user experience by giving users a heads-up before their session expires.
+
+---
+
+## Performance Considerations
+
+### 1. Minimize Token Size
+
+Large tokens increase latency and bandwidth usage. Optimize the token payload by excluding unnecessary data. For example, avoid including large objects or arrays in the token.
+
+### 2. Use Asymmetric Signing Algorithms
+
+For better performance, use symmetric signing algorithms like HS256 for JWTs. However, if you need to share tokens across multiple services, consider using asymmetric algorithms like RS256. Asymmetric algorithms provide better security for distributed systems but come with a performance cost.
+
+### 3. Cache Token Validation
+
+Cache the results of token validation to reduce database queries. This is especially useful in high-traffic applications. For example, you can use Django's caching framework to store validated tokens temporarily:
+
+```python
+from django.core.cache import cache
+
+def validate_token(token):
+    cached_user = cache.get(f'token_{token}')
+    if cached_user:
+        return cached_user
+    user = perform_validation(token)
+    cache.set(f'token_{token}', user, timeout=300)  # Cache for 5 minutes
+    return user
+```
+
+---
+
+## Conclusion
+
+JWT authentication is a powerful tool for building secure and scalable web applications. By following the best practices and techniques outlined in this article, you can implement JWT authentication in Django Rest Framework effectively and securely. Remember to prioritize security, optimize performance, and stay up-to-date with the latest advancements in authentication technologies.
+
+Implementing JWT authentication is not just about writing code — it's about understanding the underlying principles and making informed decisions that balance security, performance, and usability. Whether you're building a small application or a large-scale distributed system, these practices will help you deliver robust, high-quality solutions.

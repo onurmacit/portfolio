@@ -8,31 +8,195 @@ export const metadata = {
 };
 
 <Cover
-  src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*qwkaQxhREF7qg_clkX6biw.jpeg"
+  src="/dynamic1.jpg"
   alt="Dynamic Links in Django"
   caption="Django Dynamic Links Guide"
 />
 
 # Creating Dynamic Links with Django: A Comprehensive Guide
 
-Step-by-step guide on generating dynamic links in Django to improve flexibility, usability, and SEO performance.
+Today, I will guide you step by step on how to create dynamic links with Django.
+
+In this guide, you will see how links that direct your users to specific content within your application work, enhancing user interaction. Dynamic links not only optimize the user experience but also make your application more fluid, especially for shareable content applications.
+
+So, what are dynamic links, and how can you build a structure with Django? Let's explore together step by step.
 
 ---
 
-## Coming Soon
+## What are Dynamic Links and Why Should They Be Used?
 
-This article is currently being written. Please check back later for comprehensive content about creating dynamic links in Django.
+Dynamic links are designed to allow users easy access to specific content. When users click on a shared content link, it redirects them to the relevant page. For example, in a cooking recipe app, when users share a recipe link, the person opening the link is redirected to the app store if the app is not installed, or directly to the recipe's detail page if it is already installed.
+
+This redirection process increases the likelihood of users wanting to enter the application and enhances the overall user experience. Dynamic links facilitate quick access to content tailored to users' interests. Additionally, users can easily share the links of shared content, increasing the visibility of your application.
+
+### Use Cases
+
+Some use cases for dynamic links include:
+
+- **Marketing and Campaign Management**: You can use dynamic links to direct users to specific pages within your app for special offers or campaigns.
+- **User Interaction**: Creating shareable links can encourage users to share their favorite content with friends.
+- **User Guidance**: Links that direct users to specific sections of your app can make it easier to use.
 
 ---
 
-### What You'll Learn
+## Steps to Create Dynamic Links with Django
 
-- Dynamic URL generation techniques
-- URL patterns and routing
-- SEO-friendly link structures
-- Performance considerations
-- Real-world implementation examples
+### Step 1: Create a Model
+
+First, let's start by creating a model that represents the content to which dynamic links will direct. This model will hold the data of the content to be shared. For example, consider the following Item model:
+
+```python
+from django.db import models
+
+class Item(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+```
+
+In this model, each Item instance contains a title, description, and date information. Users will be able to create dynamic links for the content generated through this model.
+
+### Step 2: Create a Serializer
+
+Next, we create a serializer to convert the data into JSON format. This step allows the data to be exported through the API. We add a field named share_link to our serializer, defining a shareable link for each content. This makes it easier for users to share content.
+
+```python
+from rest_framework import serializers
+from .models import Item
+
+class ItemDetailSerializer(serializers.ModelSerializer):
+    share_link = serializers.SerializerMethodField()  
+
+    class Meta:
+        model = Item
+        fields = ['id', 'title', 'description', 'share_link']
+
+    def get_share_link(self, item):
+        request = self.context.get('request')
+        if request:
+            current_domain = request.build_absolute_uri('/')
+            return f"{current_domain}item_detail/{item.id}/"
+        return ""
+```
+
+In this code, the `get_share_link` method creates a dynamic link by taking the domain of the application based on the user's request. This way, a unique shareable link is obtained for each Item instance.
+
+### Step 3: Create a Dynamic Link Redirection View
+
+To enable the functionality of dynamic links, users need to be directed to the relevant pages. The following example creates a view that directs users to the correct page based on their device.
+
+```python
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
+from .models import Item
+
+def item_redirect_view(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    user_agent = request.META.get('HTTP_USER_AGENT', '').lower()
+    app_scheme_url = f"myapp://item_detail/{item_id}"
+
+    if 'iphone' in user_agent or 'ipad' in user_agent:
+        fallback_url = "https://apps.apple.com/app/my-app-id"
+    elif 'android' in user_agent:
+        fallback_url = "https://play.google.com/store/apps/details?id=com.myapp"
+    else:
+        fallback_url = request.build_absolute_uri(reverse('item_detail', args=[item_id]))
+
+    return render(request, 'redirect.html', {
+        'app_scheme_url': app_scheme_url,
+        'fallback_url': fallback_url,
+    })
+```
+
+This function performs appropriate redirection based on the user's device. For example, if the user is on an iPhone, they are directed to the App Store. Android users are redirected to the Google Play Store. If the user is using a web browser, they are directed to the relevant content page.
+
+### Step 4: Create an HTML Redirection Template
+
+To redirect users to the app or website, we prepare an HTML template. This template facilitates a proper redirection for users based on their devices.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+</head>
+<body>
+    <p>Redirecting...</p>
+    <script type="text/javascript">
+        var appSchemeUrl = "{{ app_scheme_url }}";
+        var fallbackUrl = "{{ fallback_url }}";
+
+        if (appSchemeUrl) {
+            window.location.href = appSchemeUrl;
+        } else if (fallbackUrl) {
+            window.location.href = fallbackUrl;
+        } else {
+            console.error("No URL provided for redirection");
+        }
+    </script>
+</body>
+</html>
+```
+
+This template quickly redirects the user to the appropriate URL using JavaScript. If the app link is available, it redirects there first; otherwise, it redirects to the backup URL.
+
+### Step 5: Android assetlinks.json File
+
+For secure link verification on Android, you need to set up the assetlinks.json file. This file ensures secure verification for Android devices. Here's a simple example:
+
+```json
+[
+    {
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.myapp",
+            "sha256_cert_fingerprints": [
+                "YOUR_SHA256_CERT_FINGERPRINT"
+            ]
+        }
+    }
+]
+```
+
+This file specifies which URLs your application can redirect to. Properly configuring this file is essential to enhance your application's security.
+
+### Step 6: iOS apple-app-site-association File
+
+For secure redirection on iOS devices, we use the apple-app-site-association file. This file helps iOS devices understand that the link is secure.
+
+```json
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "YOUR_TEAM_ID.com.myapp",
+                "paths": ["/item_detail/*"]
+            }
+        ]
+    }
+}
+```
+
+Place this file in the root directory of your server to complete secure redirection for iOS. iOS devices can read this file to verify your redirections.
+
+### Step 7: Testing and Security Checks
+
+When testing your dynamic links, consider the following steps:
+
+- **Test on Different Devices**: Test your links on both iOS and Android devices. Ensure that appropriate redirections are made for each device.
+- **Check Backup URLs When the App is Not Installed**: Ensure that the backup URLs function correctly when the app is not installed.
+- **Security Checks**: Make sure the assetlinks.json and apple-app-site-association files are configured correctly.
 
 ---
 
-*This article will be updated with detailed content soon.*
+## Conclusion
+
+Dynamic links are an excellent way to improve user experience and increase your application's accessibility. With Django, this process is straightforward. The steps outlined above will help you create and effectively utilize your dynamic links within your application. In this way, you can make it easier for your users to share your content and boost engagement. Remember, creating dynamic links is just the beginning; effectively using and testing them is a critical step toward success. I hope this guide helps you in creating dynamic links!

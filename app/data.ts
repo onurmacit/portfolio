@@ -32,7 +32,7 @@ export const PROJECTS: Project[] = [
     name: 'Apparelte',
     description:
       'A creative space for exploring trends, discovering styles, and building unique looks.',
-    link: 'https://www.apparelte.com/',
+    link: '/projects/apparelte',
     video:
       'https://res.cloudinary.com/dd8lad1yg/video/upload/v1758403308/Du%CC%88nyan%C4%B1n_neresinde_olursan_ol_stilini_paylas%CC%A7._%EF%B8%8F_Monte_Carlo_vibes_apparelte_outfit_ko_qsutn8.mp4',
     id: 'project1',
@@ -99,20 +99,20 @@ export const BLOG_POSTS: BlogPost[] = [
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'Github',
-    link: 'https://github.com/ibelick',
+    link: 'https://github.com/onurmacit',
   },
   {
     label: 'Twitter',
-    link: 'https://twitter.com/ibelick',
+    link: 'https://x.com/onurmaciit',
   },
   {
     label: 'LinkedIn',
-    link: 'https://www.linkedin.com/in/ibelick',
+    link: 'https://www.linkedin.com/in/onur-macit-b42a19223/',
   },
   {
     label: 'Instagram',
-    link: 'https://www.instagram.com/ibelick',
+    link: 'https://www.instagram.com/onuurmacit/',
   },
 ]
 
-export const EMAIL = 'your@email.com'
+export const EMAIL = 'onurmaciit@email.com'
