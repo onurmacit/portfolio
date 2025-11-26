@@ -1,4 +1,5 @@
 import { ProjectVideo } from '@/components/ProjectVideo'
+import { PhotoGallery } from '@/components/PhotoGallery'
 
 export const metadata = {
   title: 'Apparelte - Creative Fashion Platform',
@@ -20,181 +21,176 @@ export const metadata = {
 A creative space for exploring trends, discovering styles, and building unique looks. Apparelte is a modern fashion platform that empowers users to express their personal style through innovative technology and intuitive design.
 
 <div className="not-prose">
-  <h3 className="mb-5 text-lg font-medium">Projects</h3>
+  <h3 className="mb-5 text-lg font-medium">Videos</h3>
   <div className="grid grid-cols-1 gap-6 max-w-xs mx-auto sm:max-w-4xl sm:grid-cols-2 lg:grid-cols-3">
-  <div className="space-y-2">
     <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
       <ProjectVideo src="https://res.cloudinary.com/dd8lad1yg/video/upload/v1758403308/Du%CC%88nyan%C4%B1n_neresinde_olursan_ol_stilini_paylas%CC%A7._%EF%B8%8F_Monte_Carlo_vibes_apparelte_outfit_ko_qsutn8.mp4" />
     </div>
-    <div className="px-1">
-      <a
-        className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
-        href="/projects/apparelte"
-        target="_blank"
-      >
-        Apparelte
-        <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
-      </a>
-      <p className="text-base text-zinc-600 dark:text-zinc-400">
-        A creative space for exploring trends, discovering styles, and building unique looks.
-      </p>
-    </div>
-  </div>
-  
-  <div className="space-y-2">
+    
     <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-      <ProjectVideo src="https://res.cloudinary.com/dd8lad1yg/video/upload/v1758493351/Siz_hayal_edin_biz_gerc%CC%A7eg%CC%86e_do%CC%88nu%CC%88s%CC%A7tu%CC%88relim_I%CC%87htiyac%CC%A7lar%C4%B1n%C4%B1za_ve_hayallerinize_kavus%CC%A7man%C4%B1z_an_mese_wzi7nk.mp4" />
+      <ProjectVideo src="/apparelte3.mp4" />
     </div>
-    <div className="px-1">
-      <a
-        className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
-        href="https://korkmazelektrik.tr/"
-        target="_blank"
-      >
-        Korkmaz Elektrik
-        <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
-      </a>
-      <p className="text-base text-zinc-600 dark:text-zinc-400">
-        Showcasing Korkmaz Elektrik's services and projects in a modern, user-friendly website.
-      </p>
+    
+    <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+      <ProjectVideo src="/apparelte4.mp4" />
     </div>
-  </div>
   </div>
 </div>
 
+<PhotoGallery />
+
 ---
+
 
 ## Project Overview
 
-Apparelte is a comprehensive fashion platform designed to revolutionize how people discover, share, and engage with fashion. The platform combines cutting-edge technology with user-friendly design to create an immersive fashion experience.
+Apparelte is a comprehensive fashion platform that revolutionizes how people discover, share, and engage with fashion outfits. The platform combines modern backend architecture with robust API design to create an immersive social fashion experience, enabling users to share outfit inspirations, discover new styles, and build a vibrant fashion community.
 
-### Key Features
+## Key Features & Achievements
 
-- **Style Discovery**: Advanced algorithm-based style recommendations
-- **Trend Analysis**: Real-time fashion trend tracking and insights
-- **Community Sharing**: Social features for style sharing and inspiration
-- **Personal Styling**: AI-powered personal styling recommendations
-- **Mobile-First Design**: Optimized for mobile and desktop experiences
+### Social Fashion Discovery
+- **Outfit Sharing & Browsing**: Advanced outfit discovery system with intelligent filtering by categories, gender, and location
+- **Category-Based Organization**: Sophisticated categorization system supporting various occasions and styles (Casual, Party Mode, Coffee Date, First Date, and more)
+- **Multi-Media Support**: Rich media attachments with image optimization and cloud storage integration
 
----
+### Complete Social Platform
+- **User Engagement**: Comprehensive social features including follow/unfollow, comments with nested replies, ratings, favorites, and likes
+- **User Profiles**: Advanced profile management with verification badges, account tiers, and customizable preferences
+- **Privacy Controls**: User blocking system with automatic content filtering and relationship management
+- **Social Analytics**: Real-time follower counts, engagement metrics, and interaction tracking
+
+### Real-Time Push Notifications
+- **Firebase Cloud Messaging Integration**: Robust push notification system delivering real-time alerts for:
+  - New followers and social interactions
+  - Outfit favorites and engagement
+  - Comments and replies
+  - Rating updates
+  - System announcements
+- **Notification Management**: Comprehensive tracking system with read/unread status, delivery confirmation, and user preference controls
+- **Multi-Platform Support**: Seamless notification delivery across Android, iOS, and web platforms
+
+### Internationalization
+- **Multi-Language Support**: Full translation system supporting Turkish, English, and Estonian
+- **Dynamic Content Translation**: Automatic content localization based on user preferences
+- **Cultural Adaptation**: Region-specific content and category translations
+
+### Content Moderation
+- **Reporting System**: User-driven content moderation with categorized reporting
+- **Safety Features**: Automated content filtering and user protection mechanisms
 
 ## Technology Stack
 
-### Frontend Technologies
-- **Next.js 14**: React framework with App Router
-- **TypeScript**: Type-safe development
-- **Tailwind CSS**: Utility-first CSS framework
-- **Framer Motion**: Advanced animations and transitions
-- **React Query**: Data fetching and caching
+### Backend Framework
+- **Django 4.2**: High-level Python web framework with robust ORM and middleware architecture
+- **Django REST Framework**: Powerful toolkit for building scalable RESTful APIs
+- **PostgreSQL**: Production-ready relational database with optimized connection pooling
+- **Redis**: High-performance caching and session management layer
+- **Celery**: Distributed task queue for asynchronous background job processing
 
-### Backend Technologies
-- **Node.js**: Server-side JavaScript runtime
-- **Express.js**: Web application framework
-- **MongoDB**: NoSQL database for flexible data storage
-- **Cloudinary**: Image and video management
-- **JWT Authentication**: Secure user authentication
+### Cloud & Infrastructure
+- **AWS S3**: Scalable cloud storage for media files and static assets
+- **Firebase Admin SDK**: Secure authentication and user management
+- **Gunicorn**: Production WSGI HTTP server for high-performance deployment
 
-### Design & UX
-- **Responsive Design**: Mobile-first approach
-- **Modern UI/UX**: Clean and intuitive interface
-- **Accessibility**: WCAG 2.1 compliant design
-- **Performance**: Optimized for speed and efficiency
+### Authentication & Security
+- **JWT Authentication**: Stateless token-based authentication with refresh token support
+- **Token Blacklisting**: Enhanced security with token revocation capabilities
+- **Custom Security Middleware**: Request validation and security enhancements
+- **CORS Configuration**: Properly configured cross-origin resource sharing
 
----
+### API & Documentation
+- **OpenAPI 3.0**: Auto-generated API documentation with interactive Swagger UI
+- **RESTful Architecture**: Standard REST endpoints following industry best practices
+- **Comprehensive Error Handling**: Meaningful error messages and proper HTTP status codes
 
-## Project Highlights
-
-### 1. Advanced Style Algorithm
-Developed a sophisticated recommendation engine that analyzes user preferences, browsing history, and current trends to provide personalized style suggestions.
-
-### 2. Real-Time Trend Analysis
-Implemented a system that tracks fashion trends across social media platforms and provides real-time insights to users.
-
-### 3. Community Features
-Built a comprehensive social platform where users can share outfits, follow stylists, and discover new fashion inspiration.
-
-### 4. Mobile Optimization
-Created a seamless mobile experience with touch-friendly interactions and optimized performance for various devices.
-
----
-
-## Technical Implementation
+## Technical Highlights
 
 ### Performance Optimization
-- **Image Optimization**: Implemented lazy loading and WebP format support
-- **Code Splitting**: Dynamic imports for better performance
-- **Caching Strategy**: Redis-based caching for improved response times
-- **CDN Integration**: Global content delivery for faster loading
+- **Strategic Database Indexing**: Optimized indexes on frequently queried fields for fast query execution
+- **Redis Caching Layer**: Session storage and caching for improved response times
+- **Connection Pooling**: Efficient database connection management for handling concurrent requests
+- **Query Optimization**: Efficient ORM queries with optimized relationship loading
+- **Image Optimization**: Cloud-based image storage with optimized delivery
 
-### Security Features
-- **Authentication**: JWT-based secure authentication system
-- **Data Protection**: GDPR-compliant data handling
-- **API Security**: Rate limiting and input validation
-- **Content Security**: Secure image and video processing
+### Scalability & Architecture
+- **Modular Architecture**: Clean separation of concerns with modular design patterns
+- **Horizontal Scaling Support**: Stateless design enabling horizontal scaling capabilities
+- **Background Task Processing**: Asynchronous task handling for heavy operations
+- **Cloud Storage Integration**: Scalable media storage solution
+- **Monitoring & Logging**: Comprehensive logging system with structured log messages
 
-### Scalability
-- **Microservices Architecture**: Modular backend services
-- **Database Optimization**: Efficient query patterns and indexing
-- **Load Balancing**: Horizontal scaling capabilities
-- **Monitoring**: Comprehensive logging and performance monitoring
+### Security Implementation
+- **Secure Authentication**: Firebase-based authentication with JWT token management
+- **Custom Permissions**: Fine-grained permission system for API endpoints
+- **Input Validation**: Comprehensive data validation and sanitization
+- **CSRF Protection**: Cross-site request forgery protection
+- **Security Middleware**: Custom middleware for request validation and security enhancements
+
+## Project Impact
+
+### User Experience
+- **Seamless Onboarding**: Intuitive registration and profile setup process
+- **Intuitive Discovery**: Easy-to-use outfit browsing with powerful filtering capabilities
+- **Social Engagement**: Rich interaction features fostering community growth
+- **Real-Time Updates**: Instant notifications keeping users engaged
+
+### Technical Excellence
+- **Production-Ready**: Deployed architecture with proper environment configuration
+- **Maintainable Codebase**: Clean architecture following Django best practices
+- **Comprehensive Documentation**: Auto-generated API documentation for easy integration
+- **Error Tracking**: Integrated monitoring and error tracking capabilities
+
+## Development Approach
+
+### Best Practices
+- **Environment-Based Configuration**: Separate configurations for development, staging, and production
+- **Database Migrations**: Version-controlled database schema management
+- **Code Organization**: Modular structure with clear separation of concerns
+- **Testing Infrastructure**: Framework for comprehensive testing
+
+### Deployment & Operations
+- **Multi-Environment Support**: Flexible deployment across different environments
+- **Static File Management**: Efficient static file serving and optimization
+- **Database Management**: Production-grade database with proper indexing and optimization
+- **Monitoring**: Comprehensive logging and error tracking
+
+## Key Achievements
+
+1. **Built a Complete Social Platform**: Developed a full-featured social fashion platform from the ground up, supporting thousands of users and interactions
+
+2. **Real-Time Notification System**: Implemented a robust push notification system with high delivery rates and comprehensive tracking
+
+3. **Scalable Architecture**: Designed and implemented a production-ready architecture capable of handling growth and increased load
+
+4. **International Platform**: Created a multi-language platform accessible to users across different regions and languages
+
+5. **Performance Optimization**: Achieved optimal performance through strategic indexing, caching, and query optimization
+
+## Technical Specifications
+
+- **Backend Framework**: Django 4.2.19
+- **API Framework**: Django REST Framework 3.15.2
+- **Database**: PostgreSQL (Production) / SQLite (Development)
+- **Cache/Sessions**: Redis 5.2.1
+- **Task Queue**: Celery 5.4.0
+- **Authentication**: Firebase Admin SDK + JWT
+- **Push Notifications**: Firebase Cloud Messaging
+- **Storage**: AWS S3
+- **API Documentation**: OpenAPI 3.0 (DRF Spectacular)
 
 ---
 
-## User Experience
+<div className="not-prose">
+  <a
+    href="https://www.apparelte.com/"
+    className="group relative inline-block text-lg font-medium text-black transition-colors duration-200 hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-300"
+  >
+    <span className="relative">
+      Visit Website →
+      <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-current transition-all duration-300 group-hover:w-full"></span>
+    </span>
+  </a>
+</div>
 
-### Design Philosophy
-Apparelte was designed with the philosophy that fashion should be accessible, fun, and personal. The platform removes barriers to style expression and makes fashion discovery effortless.
+*Building the future of fashion community engagement, one outfit at a time.*
 
-### Key User Journeys
-1. **Discovery**: Users can explore trending styles and get personalized recommendations
-2. **Creation**: Easy-to-use tools for creating and sharing outfit combinations
-3. **Community**: Connect with other fashion enthusiasts and discover new styles
-4. **Shopping**: Seamless integration with fashion retailers and brands
-
----
-
-## Results & Impact
-
-### User Engagement
-- **Active Users**: 10,000+ monthly active users
-- **Engagement Rate**: 65% increase in user session duration
-- **Community Growth**: 500+ daily style shares
-- **User Retention**: 40% improvement in 30-day retention
-
-### Technical Achievements
-- **Performance**: 95+ Lighthouse score across all metrics
-- **Accessibility**: WCAG 2.1 AA compliance
-- **Mobile Experience**: 98% mobile usability score
-- **SEO**: 100% technical SEO score
-
----
-
-## Future Enhancements
-
-### Planned Features
-- **AI Styling Assistant**: Advanced AI-powered styling recommendations
-- **AR Try-On**: Augmented reality virtual try-on features
-- **Sustainability Tracking**: Carbon footprint tracking for fashion choices
-- **Brand Partnerships**: Enhanced integration with fashion brands
-
-### Technical Roadmap
-- **Microservices Migration**: Complete backend microservices architecture
-- **Real-Time Features**: WebSocket implementation for live interactions
-- **Advanced Analytics**: Machine learning for trend prediction
-- **International Expansion**: Multi-language and multi-currency support
-
----
-
-## Conclusion
-
-Apparelte represents a successful fusion of technology and fashion, creating a platform that not only serves users' immediate needs but also fosters a community of fashion enthusiasts. The project demonstrates expertise in full-stack development, user experience design, and scalable architecture implementation.
-
-The platform's success is measured not just in technical metrics, but in the positive impact it has on users' fashion journey and the vibrant community it has built around style expression.
-
----
-
-### Visit the Project
-
-[Explore Apparelte →](https://www.apparelte.com/)
-
-*Experience the future of fashion discovery and style expression.*

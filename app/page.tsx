@@ -1,6 +1,7 @@
 'use client'
-import { motion } from 'motion/react'
-import { XIcon } from 'lucide-react'
+import { motion, AnimatePresence } from 'motion/react'
+import { XIcon, ChevronDown } from 'lucide-react'
+import { useState } from 'react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
 import {
@@ -18,6 +19,7 @@ import {
   BLOG_POSTS,
   EMAIL,
   SOCIAL_LINKS,
+  SKILLS,
 } from './data'
 
 const VARIANTS_CONTAINER = {
@@ -122,6 +124,58 @@ function MagneticSocialLink({
   )
 }
 
+type SkillCategoryProps = {
+  category: { name: string; skills: string[] }
+}
+
+function SkillCategory({ category }: SkillCategoryProps) {
+  const [isExpanded, setIsExpanded] = useState(false)
+  const INITIAL_SKILLS_COUNT = 4
+  const hasMoreSkills = category.skills.length > INITIAL_SKILLS_COUNT
+  const visibleSkills = isExpanded
+    ? category.skills
+    : category.skills.slice(0, INITIAL_SKILLS_COUNT)
+
+  return (
+    <div
+      className={`group relative overflow-hidden rounded-2xl bg-zinc-100/50 p-6 ring-1 ring-zinc-200/50 transition-all duration-300 hover:bg-zinc-100/70 hover:ring-zinc-300/50 dark:bg-zinc-900/50 dark:ring-zinc-800/50 dark:hover:bg-zinc-900/70 dark:hover:ring-zinc-700/50 flex flex-col ${!isExpanded ? 'h-[200px]' : ''}`}
+    >
+      <Spotlight
+        className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+        size={64}
+      />
+      <h4 className="mb-4 font-medium text-zinc-900 dark:text-zinc-100 shrink-0">
+        {category.name}
+      </h4>
+      <div
+        className={`flex flex-wrap gap-2 ${!isExpanded ? 'max-h-[100px] overflow-hidden' : ''} flex-grow`}
+      >
+        {visibleSkills.map((skill) => (
+          <span
+            key={skill}
+            className="rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-zinc-700 transition-all duration-200 hover:bg-zinc-50 hover:scale-105 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700"
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+      {hasMoreSkills && (
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="mt-auto pt-4 flex items-center gap-1 text-sm font-medium text-zinc-600 transition-colors duration-200 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200 shrink-0"
+        >
+          <span>See {isExpanded ? 'less' : 'more'}</span>
+          <div
+            className={`transform transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
+          >
+            <ChevronDown className="h-4 w-4" />
+          </div>
+        </button>
+      )}
+    </div>
+  )
+}
+
 export default function Personal() {
   return (
     <motion.main
@@ -146,6 +200,18 @@ export default function Personal() {
           Currently, I focus on architecting robust backend solutions for my own projects, combining technical depth 
           with practical problem-solving skills.
           </p>
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h3 className="mb-5 text-lg font-medium">Skills & Technologies</h3>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 items-start">
+          {SKILLS.map((category) => (
+            <SkillCategory key={category.name} category={category} />
+          ))}
         </div>
       </motion.section>
 

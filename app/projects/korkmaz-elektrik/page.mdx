@@ -1,0 +1,381 @@
+import { ProjectVideo } from '@/components/ProjectVideo'
+
+export const metadata = {
+  title: 'Korkmaz Elektrik - Modern Electrical Services Website',
+  description:
+    'Showcasing Korkmaz Elektrik\'s services and projects in a modern, user-friendly website. Professional electrical services with innovative web presence.',
+  alternates: {
+    canonical: '/projects/korkmaz-elektrik',
+  },
+};
+
+<Cover
+  src="/a1.svg"
+  alt="Korkmaz Elektrik - Modern Electrical Services"
+  caption="Korkmaz Elektrik Project Showcase"
+/>
+
+# Korkmaz Elektrik - Modern Electrical Services Website
+
+Showcasing Korkmaz Elektrik's services and projects in a modern, user-friendly website. A professional electrical services company with an innovative web presence that connects with customers and showcases expertise in electrical solutions.
+
+<div className="not-prose">
+  <h3 className="mb-5 text-lg font-medium">Videos</h3>
+  <div className="grid grid-cols-1 gap-6 max-w-xs mx-auto sm:max-w-4xl sm:grid-cols-2 lg:grid-cols-3">
+    <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+      <ProjectVideo src="/a2.MOV" />
+    </div>
+  </div>
+</div>
+
+---
+
+# Korkmaz Elektrik - Professional Electrical Services Website
+
+A modern, high-performance website for an electrical services company built with cutting-edge web technologies. Korkmaz Elektrik showcases professional electrical services, project portfolios, and client resources through an intuitive, responsive platform that delivers exceptional user experience across all devices.
+
+---
+
+## Project Overview
+
+Korkmaz Elektrik is a modern, professional website designed to showcase electrical services and projects. The platform provides a user-friendly interface for customers to explore services, view completed projects, and connect with the company. The website combines clean design with intuitive navigation to create an engaging experience for potential clients. Built using Next.js 15 with App Router architecture, the project implements static site generation for optimal performance and SEO.
+
+## Key Features & Achievements
+
+### Service Showcase
+
+- **Service Presentation**: Comprehensive display of electrical services with detailed descriptions and interactive hover effects
+
+- **Project Portfolio**: Visual showcase of completed electrical projects with dynamic routing (`/projects/[slug]`) and static generation
+
+- **Service Categories**: Well-organized service categories for easy navigation with dynamic image positioning on hover
+
+- **Visual Content**: High-quality images optimized with Next.js Image component and responsive gallery layouts
+
+### User Experience
+
+- **Intuitive Navigation**: Clean and simple navigation structure with client-side routing and smooth transitions
+
+- **Responsive Design**: Fully responsive website using Tailwind CSS 4 with mobile-first approach, working seamlessly across all devices
+
+- **Contact Integration**: Contact forms integrated with FormSubmit API for reliable email delivery without backend dependencies
+
+- **Professional Presentation**: Modern design with dark/light theme support using next-themes v0.4.6
+
+### Content Management
+
+- **Markdown-Based Content**: MDX files for blog posts and project descriptions using gray-matter v4.0.3 for front matter parsing
+
+- **Static Content Generation**: Pre-rendered pages at build time using `generateStaticParams()` for optimal performance
+
+- **Dynamic Metadata**: Server-side metadata generation with `generateMetadata()` for SEO optimization
+
+- **Content Processing**: Markdown to HTML conversion using remark v15.0.1 and remark-html v16.0.1
+
+### Technical Excellence
+
+- **Performance Optimization**: Static site generation with `output: 'export'` configuration for CDN deployment
+
+- **SEO Friendly**: Comprehensive meta tags, dynamic metadata generation, and semantic HTML structure
+
+- **Accessibility**: Accessible design following WCAG standards with Radix UI components (v1.2.3)
+
+- **Mobile-First Approach**: Responsive design implemented with Tailwind CSS 4 and breakpoint-based layouts
+
+## Technology Stack
+
+### Frontend Framework
+
+- **Next.js 15.5.2**: Latest Next.js with App Router architecture, Server Components, and Static Site Generation
+
+- **React 19.0.0**: Latest React with concurrent features, improved performance, and new hooks
+
+- **React DOM 19.0.0**: React rendering library with latest optimizations
+
+- **TypeScript 5.x**: Full type safety with strict mode enabled, ES2017 target, and module resolution bundler
+
+### Styling & UI
+
+- **Tailwind CSS 4**: Latest Tailwind CSS with PostCSS integration (@tailwindcss/postcss v4)
+
+- **Radix UI 1.2.3**: Accessible, unstyled UI primitives for accordion components
+
+- **Lucide React 0.483.0**: Modern icon library with tree-shakeable icons
+
+- **Iconify React 5.2.0**: Comprehensive icon system with @iconify/icons-ion v1.2.10
+
+- **Class Variance Authority 0.7.1**: Utility for building type-safe component variants
+
+- **Tailwind Merge 3.0.2**: Utility for merging Tailwind CSS classes without conflicts
+
+- **CLSX 2.1.1**: Utility for constructing className strings conditionally
+
+### Animation & Interaction
+
+- **React Scroll Parallax 3.4.5**: Smooth parallax scrolling effects for engaging user experience
+
+- **React Intersection Observer 9.16.0**: Efficient scroll-based animations and lazy loading implementation
+
+- **React Countup 6.5.3**: Animated number counting for statistics display
+
+- **React Fast Marquee 1.6.5**: Smooth scrolling marquee components
+
+- **Swiper 11.2.5**: Modern touch slider for carousels and image galleries
+
+- **React Infinite Logo Slider 1.1.4**: Infinite scrolling logo carousel component
+
+### Content Processing
+
+- **Gray Matter 4.0.3**: Front matter parsing for Markdown files with YAML support
+
+- **Remark 15.0.1**: Markdown processor with plugin ecosystem
+
+- **Remark HTML 16.0.1**: Remark plugin for converting Markdown to HTML
+
+### Authentication & Theming
+
+- **NextAuth.js 4.24.11**: Authentication library with multiple provider support
+
+- **Next Themes 0.4.6**: Theme management with system preference detection and persistence
+
+### Development Tools
+
+- **ESLint 9**: Code linting with eslint-config-next 15.2.1
+
+- **TypeScript 5**: Type checking with @types/node v20, @types/react v19, @types/react-dom v19
+
+- **PostCSS**: CSS processing with @tailwindcss/postcss v4 plugin
+
+- **Next.js Config**: Custom configuration with static export, image optimization, and trailing slash support
+
+## Technical Highlights
+
+### Performance Optimization
+
+- **Static Site Generation**: Full static export using `output: 'export'` in next.config.ts for CDN deployment
+
+- **Image Optimization**: Next.js Image component with quality settings (25, 50, 75, 100) and responsive sizing
+
+- **Code Splitting**: Automatic route-based code splitting with Next.js App Router
+
+- **Font Optimization**: Google Fonts (Manrope) optimization using next/font/google with subset loading
+
+- **Lazy Loading**: Component-level lazy loading with React.lazy and dynamic imports
+
+- **Build Optimization**: Optimized production builds with tree shaking, minification, and asset optimization
+
+### Architecture & Implementation
+
+- **App Router Architecture**: Next.js 15 App Router with Server Components and Client Components separation
+
+- **File-Based Routing**: Dynamic routes using `[slug]` pattern for projects and blog posts
+
+- **Server Components**: Server-side rendering for metadata generation and static content
+
+- **Client Components**: Interactive components marked with "use client" directive for client-side interactivity
+
+- **TypeScript Configuration**: Strict TypeScript with ES2017 target, ES modules, and path aliases (@/*)
+
+- **Module Resolution**: Bundler-based module resolution for optimal build performance
+
+### Content Management System
+
+- **Markdown Processing**: Server-side Markdown processing using gray-matter and remark
+
+- **Front Matter Parsing**: YAML front matter extraction for metadata (title, slug, description, images)
+
+- **Static Path Generation**: `generateStaticParams()` for pre-rendering all dynamic routes at build time
+
+- **Content Filtering**: Field-based content filtering for optimized data fetching
+
+- **Image Processing**: Automatic image path processing and HTML conversion in markdown content
+
+### User Interface Implementation
+
+- **Component Architecture**: Modular component structure with reusable UI components
+
+- **Theme System**: Dark/light mode with ThemeProvider and system preference detection
+
+- **Responsive Design**: Mobile-first approach with Tailwind breakpoints (sm, md, lg, xl, 2xl)
+
+- **Interactive Elements**: Hover effects, transitions, and animations using CSS and React hooks
+
+- **Form Handling**: Client-side form state management with React hooks and async submission
+
+### SEO & Metadata
+
+- **Dynamic Metadata**: Server-side metadata generation with `generateMetadata()` function
+
+- **Structured Data**: Semantic HTML5 elements for better search engine understanding
+
+- **Meta Tags**: Comprehensive meta tags including title, description, and Open Graph tags
+
+- **Robots Configuration**: Configurable robots meta tags for search engine indexing control
+
+- **Sitemap Ready**: Static generation enables easy sitemap creation
+
+### Build & Deployment Configuration
+
+- **Static Export**: Full static site generation with `output: 'export'` for CDN hosting
+
+- **Trailing Slash**: Consistent URL structure with trailing slash configuration
+
+- **Custom Dist Directory**: Build output to 'dist' directory for deployment flexibility
+
+- **Image Configuration**: Unoptimized images for static export compatibility
+
+- **ESLint Configuration**: Build-time ESLint with ignoreDuringBuilds option
+
+## Project Impact
+
+### Business Benefits
+
+- **Enhanced Online Presence**: Professional website increases company visibility and credibility
+
+- **Customer Engagement**: Improved customer interaction through intuitive interface and clear call-to-actions
+
+- **Service Showcase**: Effective presentation of services and completed projects with visual galleries
+
+- **Lead Generation**: Optimized contact forms and communication channels for better conversion
+
+- **SEO Performance**: Search engine optimized structure improves organic visibility
+
+### User Benefits
+
+- **Easy Access to Information**: Quick access to services, projects, and contact information
+
+- **Professional Impression**: Modern, responsive design reflects company professionalism
+
+- **Mobile Accessibility**: Fully responsive design ensures access from any device
+
+- **Fast Loading**: Static generation provides instant page loads and smooth navigation
+
+- **Accessible Design**: WCAG-compliant design ensures accessibility for all users
+
+### Technical Benefits
+
+- **Maintainable Codebase**: Clean architecture with TypeScript for type safety and error prevention
+
+- **Scalable Structure**: Modular design allows easy feature additions and content updates
+
+- **Performance**: Static generation ensures optimal performance and Core Web Vitals scores
+
+- **Developer Experience**: Well-organized codebase with clear patterns and comprehensive tooling
+
+## Development Approach
+
+### Best Practices
+
+- **Type Safety**: Comprehensive TypeScript usage with strict mode for better code quality
+
+- **Component Reusability**: Modular component architecture with shared UI components
+
+- **Performance First**: Optimization strategies implemented from the start (static generation, image optimization)
+
+- **Accessibility**: WCAG guidelines followed with semantic HTML and ARIA attributes
+
+- **Code Organization**: Feature-based structure with clear separation of concerns
+
+### Code Quality
+
+- **ESLint Integration**: Code linting with Next.js ESLint configuration
+
+- **TypeScript Strict Mode**: Strict type checking enabled for maximum type safety
+
+- **Path Aliases**: Clean imports using @/* alias for better code organization
+
+- **Component Patterns**: Consistent component patterns with proper prop typing
+
+### Build & Deployment
+
+- **Static Site Generation**: Full static export for CDN deployment and optimal performance
+
+- **Environment Configuration**: Flexible configuration for different deployment stages
+
+- **Build Optimization**: Optimized production builds with tree shaking and minification
+
+- **Asset Management**: Organized asset structure in public directory with proper naming
+
+## Key Achievements
+
+1. **Modern Website Implementation**: Created a professional, modern website using Next.js 15.5.2 with App Router architecture
+
+2. **Performance Optimization**: Achieved optimal performance through static site generation, image optimization, and code splitting
+
+3. **Type-Safe Development**: Implemented comprehensive TypeScript coverage with strict mode for reduced runtime errors
+
+4. **Content Management**: Built flexible Markdown-based CMS for easy content updates without database dependencies
+
+5. **Responsive & Accessible Design**: Delivered fully responsive design with Tailwind CSS 4 and accessibility considerations
+
+6. **SEO Optimization**: Implemented comprehensive SEO strategy with dynamic metadata generation and semantic HTML
+
+## Technical Specifications
+
+### Core Technologies
+
+- **Framework**: Next.js 15.5.2 (App Router)
+- **Runtime**: React 19.0.0
+- **Language**: TypeScript 5.x (Strict Mode, ES2017 Target)
+- **Styling**: Tailwind CSS 4 with PostCSS
+- **Build Tool**: Next.js built-in bundler
+
+### UI Libraries
+
+- **UI Components**: Radix UI 1.2.3
+- **Icons**: Lucide React 0.483.0, Iconify React 5.2.0
+- **Animations**: React Scroll Parallax 3.4.5, React Intersection Observer 9.16.0
+- **Sliders**: Swiper 11.2.5
+
+### Content & Data
+
+- **Content Format**: Markdown (MDX) with YAML front matter
+- **Content Processing**: Gray Matter 4.0.3, Remark 15.0.1, Remark HTML 16.0.1
+- **Data Fetching**: Static generation at build time
+
+### Development Environment
+
+- **Node.js**: Compatible with Node.js 20+
+- **Package Manager**: npm/yarn
+- **Linting**: ESLint 9 with Next.js config
+- **Type Checking**: TypeScript 5.x
+
+### Deployment Configuration
+
+- **Output Mode**: Static Export (`output: 'export'`)
+- **Build Directory**: `dist/`
+- **Image Optimization**: Next.js Image component (unoptimized for static export)
+- **URL Structure**: Trailing slash enabled
+
+### Browser Support
+
+- **Modern Browsers**: Chrome, Firefox, Safari, Edge (latest versions)
+- **Mobile Browsers**: iOS Safari, Chrome Mobile
+- **Responsive Breakpoints**: 640px, 768px, 1024px, 1280px, 1536px
+
+---
+
+<div className="not-prose">
+
+  <a
+
+    href="https://korkmazelektrik.tr/"
+
+    className="group relative inline-block text-lg font-medium text-black transition-colors duration-200 hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-300"
+
+  >
+
+    <span className="relative">
+
+      Visit Website →
+
+      <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-current transition-all duration-300 group-hover:w-full"></span>
+
+    </span>
+
+  </a>
+
+</div>
+
+*Turning your electrical dreams into reality, one project at a time.*
+

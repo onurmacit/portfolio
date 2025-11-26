@@ -27,6 +27,11 @@ type SocialLink = {
   link: string
 }
 
+type SkillCategory = {
+  name: string
+  skills: string[]
+}
+
 export const PROJECTS: Project[] = [
   {
     name: 'Apparelte',
@@ -39,8 +44,9 @@ export const PROJECTS: Project[] = [
   },
   {
     name: 'Korkmaz Elektrik',
-    description: 'Showcasing Korkmaz Elektrik’s services and projects in a modern, user-friendly website.',
-    link: 'https://korkmazelektrik.tr/',
+    description:
+      'Showcasing Korkmaz Elektrik\'s services and projects in a modern, user-friendly website.',
+    link: '/projects/korkmaz-elektrik',
     video:
       'https://res.cloudinary.com/dd8lad1yg/video/upload/v1758493351/Siz_hayal_edin_biz_gerc%CC%A7eg%CC%86e_do%CC%88nu%CC%88s%CC%A7tu%CC%88relim_I%CC%87htiyac%CC%A7lar%C4%B1n%C4%B1za_ve_hayallerinize_kavus%CC%A7man%C4%B1z_an_mese_wzi7nk.mp4',
     id: 'project2',
@@ -113,6 +119,108 @@ export const SOCIAL_LINKS: SocialLink[] = [
     label: 'Instagram',
     link: 'https://www.instagram.com/onuurmacit/',
   },
+  {
+    label: 'Medium',
+    link: 'https://medium.com/@onurmaciit',
+  },
 ]
 
 export const EMAIL = 'onurmaciit@email.com'
+
+export const SKILLS: SkillCategory[] = [
+  {
+    name: 'Backend Frameworks',
+    skills: [
+      'Django',
+      'Django REST Framework',
+      'Python',
+      'Java',
+      'C#',
+      'Go (Golang)',
+    ],
+  },
+  {
+    name: 'Databases & Caching',
+    skills: [
+      'PostgreSQL',
+      'Redis',
+      'SQLite',
+      'Query Optimization',
+      'Database Indexing',
+      'Connection Pooling',
+    ],
+  },
+  {
+    name: 'Frontend Technologies',
+    skills: [
+      'Next.js 15',
+      'React 19',
+      'TypeScript',
+      'Tailwind CSS 4',
+      'HTML5',
+      'CSS3',
+      'Radix UI',
+    ],
+  },
+  {
+    name: 'Cloud & Infrastructure',
+    skills: [
+      'AWS',
+      'Firebase',
+      'Docker',
+      'Gunicorn',
+      'Linux',
+      'CI/CD',
+      'Jenkins',
+    ],
+  },
+  {
+    name: 'Task Processing & APIs',
+    skills: [
+      'Celery',
+      'RESTful APIs',
+      'JWT Authentication',
+      'OpenAPI 3.0',
+      'Swagger',
+      'Postman',
+      'API Documentation',
+    ],
+  },
+  {
+    name: 'Development Tools',
+    skills: [
+      'Git',
+      'GitHub',
+      'VS Code',
+      'Jira',
+      'Slack',
+      'Sentry',
+      'ESLint',
+      'PostCSS',
+    ],
+  },
+  {
+    name: 'Architecture & Patterns',
+    skills: [
+      'Service Pattern',
+      'Repository Pattern',
+      'Microservices',
+      'Modular Architecture',
+      'Test-Driven Development',
+      'OOP',
+      'Functional Programming',
+    ],
+  },
+  {
+    name: 'Other Skills',
+    skills: [
+      'UI/UX Design',
+      'Game Development',
+      'Desktop Applications',
+      'Blockchain',
+      'Internationalization',
+      'Performance Optimization',
+      'Monitoring & Logging',
+    ],
+  },
+]
