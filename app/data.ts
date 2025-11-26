@@ -59,7 +59,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     title: 'Backend Developer & UI/UX Designer',
     start: '2024',
     end: 'Present',
-    link: 'https://ibelick.com',
+    link: 'https://vyrinlab.com',
     id: 'work1',
   },
   {
@@ -67,7 +67,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     title: 'Software Developer',
     start: '2021',
     end: '2024',
-    link: 'https://ibelick.com',
+    link: 'https://onurmacit.vercel.app/',
     id: 'work2',
   },
 ]
