@@ -32,6 +32,8 @@
 }
 
 /* Make favicon circular */
-link[rel="icon"] {
+link[rel="icon"],
+link[rel="apple-touch-icon"],
+link[rel="shortcut icon"] {
   border-radius: 50% !important;
 }

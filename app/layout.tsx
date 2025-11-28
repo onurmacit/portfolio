@@ -22,15 +22,7 @@ export const metadata: Metadata = {
     template: '%s | Onur Macit'
   },
   description:  'Nim is a free and open-source personal website template built with Next.js 15, React 19 and Motion-Primitives.',
-  icons: {
-    icon: [
-      { url: '/icon.png', sizes: '32x32', type: 'image/png' },
-      { url: '/icon.ico', sizes: '16x16', type: 'image/x-icon' }
-    ],
-    apple: [
-      { url: '/icon.png', sizes: '180x180', type: 'image/png' }
-    ]
-  }
+  // Icons are automatically handled by Next.js app directory (app/icon.png)
 };
 
 const geist = Geist({

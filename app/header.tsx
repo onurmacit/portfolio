@@ -27,7 +27,7 @@ export function Header() {
             onClick={() => setIsModalOpen(true)}
           >
             <Image
-              src="/profile.png"
+              src="/onur.png"
               alt="Onur Macit"
               width={120}
               height={120}
@@ -78,7 +78,7 @@ export function Header() {
             <XIcon className="h-5 w-5 text-gray-600" />
           </button>
           <Image
-            src="/profile.png"
+            src="/onur.png"
             alt="Onur Macit - Full Size"
             width={800}
             height={800}

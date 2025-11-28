@@ -65,7 +65,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: 'Freelance',
     title: 'Software Developer',
-    start: '2021',
+    start: '2023',
     end: '2024',
     link: 'https://onurmacit.vercel.app/',
     id: 'work2',
